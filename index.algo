@@ -1,0 +1,65 @@
+ALGORITHM exo1
+VAR
+   STRING sentence
+   INTEGER character ,words , vowels;
+   
+BEGIN
+      // Initialize variables
+    
+    // Input sentence from user
+    sentence <- Read input sentence ending with '.'
+
+    // Calculate number of characters
+    character := NumberCharacter(sentence)
+
+    // Calculate number of words
+    words := NumberWords(sentence)
+
+    // Calculate number of vowels
+    vowels := NumberVowels(sentence)
+
+    // Output results
+    Display "Length of the sentence:", character
+    Display "Number of words in the sentence:", words
+    Display "Number of vowels in the sentence:", vowels
+ 
+END
+FUNCTION NumberCharacter(sentence) : INTEGER
+VAR
+    INTEGER character
+BEGIN
+    character:=0
+    FOR i FROM 0 TO sentence.length STEP 1  DO
+        character :=character+1 
+    END_FOR
+    RETURN character ;
+END
+FUNCTION NumberWords(sentence) : INTEGER
+VAR
+    INTEGER words
+BEGIN
+    words:=0
+    FOR i FROM 0 TO  sentence.length STEP 1  DO
+        IF (sentence[i]=" " || sentence[i]=".") THEN
+            words=words+1
+        END_IF
+
+    END_FOR
+    RETURN words ;
+END
+FUNCTION NumberVowels(sentence) : INTEGER
+VAR
+    INTEGER sumVowels
+    vowels : ARRAY_OF string[6]; 
+BEGIN
+    sumVowels=0
+    vowels=["a","e","i","o","u","y"]
+    FOR i FROM 0 TO sentence.length STEP 1  Do
+        FOR j FROM 0 TO 6 STEP 1  DO
+            IF (sentence[i]=vowels[j]) THEN
+                sumVowels=sumVowels+1
+            END_IF
+        END_FOR
+    END_FOR
+    RETURN sumVowels ;
+END
